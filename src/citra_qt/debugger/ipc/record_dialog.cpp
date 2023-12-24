@@ -41,6 +41,11 @@ RecordDialog::RecordDialog(QWidget* parent, const IPCDebugger::RequestRecord& re
     ui->serverThread->setText(FormatObject(record.server_thread));
     ui->serverSession->setText(FormatObject(record.server_session));
 
+    QString lr = QString::fromStdString(std::format("lr: {:#x}", record.lr));
+    QString pc = QString::fromStdString(std::format("pc: {:#x}", record.pc));
+    ui->lr->setText(lr);
+    ui->pc->setText(pc);
+
     ui->clientPort->setText(FormatObject(record.client_port));
     ui->service->setText(std::move(service));
     ui->function->setText(std::move(function));

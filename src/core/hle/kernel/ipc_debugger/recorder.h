@@ -54,6 +54,8 @@ struct RequestRecord {
     ObjectInfo server_process; // Only available for LLE requests
     ObjectInfo server_thread;  // Only available for LLE requests
     ObjectInfo server_session;
+    u32 pc;
+    u32 lr;
     std::string function_name; // Not available for LLE or portless
     bool is_hle = false;
     // Request info is only available when status is not `Invalid` or `Sent`

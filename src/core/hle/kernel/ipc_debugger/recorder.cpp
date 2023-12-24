@@ -59,7 +59,9 @@ void Recorder::RegisterRequest(const std::shared_ptr<Kernel::ClientSession>& cli
                                 /* client_port */ GetObjectInfo(client_session->parent->port.get()),
                                 /* server_process */ {},
                                 /* server_thread */ {},
-                                /* server_session */ GetObjectInfo(client_session->parent->server)};
+                                /* server_session */ GetObjectInfo(client_session->parent->server),
+                                /* pc */ client_thread.get()->context.cpu_registers[15],
+                                /* lr */ client_thread.get()->context.cpu_registers[14]};
         record_map.insert_or_assign(thread_id, std::make_unique<RequestRecord>(record));
         client_session_map.insert_or_assign(thread_id, client_session);
 
